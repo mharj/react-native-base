@@ -8,7 +8,7 @@ export const getHome = (etag) => (dispatch) => {
 		if (etag) {
 			headers['if-none-match'] = etag;
 		}
-		fetch('/api/hello', {headers: headers})
+		fetch('https://jsonplaceholder.typicode.com/todos/1', {headers: headers})
 			.then((response) => {
 				let etag = null;
 				if (response.status === 304) {
@@ -25,8 +25,8 @@ export const getHome = (etag) => (dispatch) => {
 			.then((data) => {
 				if (data) {
 					const {etag, json} = data;
-					if (json && json.hello) {
-						dispatch({type: TYPES.LOADING_DONE, value: json.hello, etag: etag});
+					if (json && json.title) {
+						dispatch({type: TYPES.LOADING_DONE, value: json.title, etag: etag});
 					} else {
 						throw new Error('no value found!');
 					}

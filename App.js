@@ -5,6 +5,7 @@ import i18n from './i18n';
 import {PersistGate} from 'redux-persist/lib/integration/react';
 import {Provider} from 'react-redux';
 import configureStore from './configureStore';
+import 'cross-fetch/polyfill';
 
 let {store, persistor} = configureStore();
 

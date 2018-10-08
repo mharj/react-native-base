@@ -23,6 +23,7 @@
     "preset": "jest-expo"
   },
   "dependencies": {
+    "cross-fetch": "^2.2.2",
     "expo": "^27.0.1",
     "i18next": "^11.9.0",
     "i18next-react-native-language-detector": "^1.0.2",
