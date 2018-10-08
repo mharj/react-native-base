@@ -1,6 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View, Button} from 'react-native';
-import {translate} from 'react-i18next';
+import {withNamespaces} from 'react-i18next';
 import {connect} from 'react-redux';
 import {Route, NativeRouter as Router, Link} from 'react-router-native';
 import Home from './views/Home';
@@ -95,4 +95,4 @@ const mapStateToProps = (state) => {
 		isLoggedIn: state.app.isLoggedIn,
 	};
 };
-export default connect(mapStateToProps)(translate()(App));
+export default connect(mapStateToProps)(withNamespaces()(App));

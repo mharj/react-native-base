@@ -1,6 +1,6 @@
 import React from 'react';
 import {connect} from 'react-redux';
-import {translate} from 'react-i18next';
+import {withNamespaces} from 'react-i18next';
 import {StyleSheet, Text, View, TextInput, Button} from 'react-native';
 import actions from '../actions';
 import {withRouter} from 'react-router-native';
@@ -83,5 +83,5 @@ export default withRouter(
 	connect(
 		mapStateToProps,
 		actions,
-	)(translate()(Login)),
+	)(withNamespaces()(Login)),
 );

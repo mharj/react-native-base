@@ -1,5 +1,5 @@
 import React from 'react';
-import {translate} from 'react-i18next';
+import {withNamespaces} from 'react-i18next';
 import {connect} from 'react-redux';
 import {Text, View} from 'react-native';
 import actions from '../actions';
@@ -30,4 +30,4 @@ const mapStateToProps = (state) => {
 export default connect(
 	mapStateToProps,
 	actions,
-)(translate()(Home));
+)(withNamespaces()(Home));
