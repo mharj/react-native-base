@@ -1,10 +1,14 @@
-import {ACTION_TYPES as TYPES} from '../reducers/appReducer';
+import {Types} from '../reducers';
 
-export const getHome = (etag) => (dispatch) => {
-	dispatch({type: TYPES.LOADING});
+/**
+ * @param {string} etag
+ * @return {void}
+ */
+export const getHome = (etag) => (dispatch, getState) => {
+	dispatch({type: Types.app.LOADING});
 	setTimeout(() => {
 		//  ajax delay 1sec
-		let headers = {};
+		const headers = {};
 		if (etag) {
 			headers['if-none-match'] = etag;
 		}
@@ -26,28 +30,28 @@ export const getHome = (etag) => (dispatch) => {
 				if (data) {
 					const {etag, json} = data;
 					if (json && json.title) {
-						dispatch({type: TYPES.LOADING_DONE, value: json.title, etag: etag});
+						dispatch({type: Types.app.LOADING_DONE, value: json.title, etag: etag});
 					} else {
 						throw new Error('no value found!');
 					}
 				} else {
-					dispatch({type: TYPES.LOADING_NO_CHANGE});
+					dispatch({type: Types.app.LOADING_NO_CHANGE});
 				}
 			})
 			.catch((error) => {
-				dispatch({type: TYPES.LOADING_ERROR, error});
+				dispatch({type: Types.app.LOADING_ERROR, error});
 			});
 	}, 1000);
 };
 
-export const doLogin = (username, password) => (dispatch) => {
+export const doLogin = (username, password) => (dispatch, getState) => {
 	if ( username === 'test' && password === 'password') {
-		return Promise.resolve( dispatch({type: TYPES.LOGIN}) );
+		return Promise.resolve( dispatch({type: Types.app.LOGIN}) );
 	} else {
-		return Promise.reject( dispatch({type: TYPES.LOGIN_ERROR, error: new Error('account or password not match')}) );
+		return Promise.reject( dispatch({type: Types.app.LOGIN_ERROR, error: new Error('account or password not match')}) );
 	}
 };
 
-export const doLogout = () => (dispatch) => {
-	return Promise.resolve( dispatch({type: TYPES.LOGOUT}) );
+export const doLogout = () => (dispatch, getState) => {
+	return Promise.resolve( dispatch({type: Types.app.LOGOUT}) );
 };

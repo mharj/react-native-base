@@ -3,7 +3,7 @@ import {persistStore, persistReducer} from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import autoMergeLevel2 from 'redux-persist/lib/stateReconciler/autoMergeLevel2';
 import thunk from 'redux-thunk';
-import rootReducer from './src/reducers';
+import {rootReducer} from './src/reducers';
 
 const persistConfig = {
 	key: 'root',
@@ -33,11 +33,11 @@ const composedEnhancers = compose(
 );
 
 export default () => {
-	let store = createStore(
+	const store = createStore(
 		persistedReducer,
 		initialState,
 		composedEnhancers,
 	);
-	let persistor = persistStore(store);
+	const persistor = persistStore(store);
 	return {store, persistor};
 };

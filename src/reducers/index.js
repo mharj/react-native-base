@@ -1,7 +1,12 @@
 import {combineReducers} from 'redux';
-import app from './appReducer';
+import {reducer as AppReducer, Types as AppTypes} from './appReducer';
 
-const appReducer = combineReducers({
-	app,
+const Types = {
+	app: AppTypes,
+};
+
+const rootReducer = combineReducers({
+	app: AppReducer,
 });
-export default appReducer;
+
+export {rootReducer, Types};
